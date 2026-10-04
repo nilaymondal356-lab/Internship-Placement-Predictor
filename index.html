@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Internship Success Predictor</title>
+    <meta name="description" content="Leverage advanced machine learning to predict your internship placement success. Analyze your academic record, experience, and skills.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@500;600;700&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Ambient light layers -->
+    <div class="ambient">
+        <div class="ambient__glow ambient__glow--1"></div>
+        <div class="ambient__glow ambient__glow--2"></div>
+        <div class="ambient__glow ambient__glow--3"></div>
+    </div>
+    <!-- Grain overlay for texture -->
+    <div class="grain-overlay"></div>
+
+    <!-- Main App Container -->
+    <div class="app-container">
+
+        <!-- 1. Hero Landing Section Ã¢â‚¬â€ sticks behind and blurs on scroll -->
+        <section class="hero-section" id="heroSection">
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                <source src="hero-background.mp4" type="video/mp4">
+            </video>
+            <div class="hero-video-overlay" aria-hidden="true"></div>
+            <div class="hero-left-overlay" aria-hidden="true"></div>
+            <div class="hero-particles" id="heroParticles"></div>
+            <div class="hero-content">
+                <h1 class="hero-main-title" id="heroTitle">
+                    <span class="hero__title-line" data-hero-line="1">Internship</span>
+                    <span class="hero__title-line" data-hero-line="2">Success</span>
+                    <span class="hero__title-accent" data-hero-line="3">Predictor</span>
+                </h1>
+                <button class="hero-cta" id="startBtn">
+                    <span>Get Started</span>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </div>
+            <div class="scroll-indicator reveal-up" style="--delay: 1.4s;">
+                <span class="scroll-text">Explore</span>
+                <div class="scroll-arrow-bounce">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <polyline points="19 12 12 19 5 12"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Scroll-reveal content area Ã¢â‚¬â€ pops up over the blurred hero -->
+        <div class="scroll-content" id="scrollContent">
+
+            <!-- Interactive Tabs Form Section -->
+            <section class="tabs-section" id="tabsSection">
+                <div class="tabs-header scroll-reveal" data-reveal>
+                    <div class="profile-progress" role="status" aria-live="polite">
+                        <span class="profile-progress__dot" aria-hidden="true"></span>
+                        <span id="profileProgressText">Progress: Step 1 of 4</span>
+                        <span class="profile-progress__divider" aria-hidden="true"></span>
+                        <span>Autosaved</span>
+                    </div>
+                    <h2 class="tabs-main-title">Your <span class="gradient-text">Profile</span></h2>
+                    <p class="tabs-subtitle">Tap a step to begin filling your details</p>
+                    <div class="profile-step-progress" aria-label="Profile completion progress">
+                        <span class="is-active"></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+
+                <!-- Expanding numbered form -->
+                <form id="predictForm" novalidate>
+                <div class="tab-circles scroll-reveal" id="tabCircles" data-reveal>
+                    <div class="tab-circle active" data-tab="0">
+                        <span class="tab-circle__number">1</span>
+                        <span class="tab-circle__label">Academic</span>
+                        <span class="tab-circle__summary">Marks &amp; grades</span>
+                        <span class="tab-circle__check">&#10004;</span>
+                        <svg class="tab-circle__arrow" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </div>
+                    <div class="tab-connector"></div>
+                    <div class="tab-circle" data-tab="1">
+                        <span class="tab-circle__number">2</span>
+                        <span class="tab-circle__label">Experience</span>
+                        <span class="tab-circle__summary">Projects &amp; internships</span>
+                        <span class="tab-circle__check">&#10004;</span>
+                        <svg class="tab-circle__arrow" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </div>
+                    <div class="tab-connector"></div>
+                    <div class="tab-circle" data-tab="2">
+                        <span class="tab-circle__number">3</span>
+                        <span class="tab-circle__label">Aptitude</span>
+                        <span class="tab-circle__summary">Skills assessment</span>
+                        <span class="tab-circle__check">&#10004;</span>
+                        <svg class="tab-circle__arrow" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </div>
+                    <div class="tab-connector"></div>
+                    <div class="tab-circle" data-tab="3">
+                        <span class="tab-circle__number">4</span>
+                        <span class="tab-circle__label">Activities</span>
+                        <span class="tab-circle__summary">Training &amp; involvement</span>
+                        <span class="tab-circle__check">&#10004;</span>
+                        <svg class="tab-circle__arrow" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </div>
+                </div>
+
+                <!-- Panels are moved into their matching numbered step by script.js. -->
+                    <div class="morph-panel-wrapper" id="morphPanelWrapper">
+
+                        <!-- Panel 0: Academic -->
+                        <div class="morph-panel active" data-panel="0">
+                            <div class="morph-panel__inner">
+                                <div class="morph-panel__head">
+                                    <span class="morph-panel__step-num">01</span>
+                                    <div>
+                                        <h3 class="morph-panel__title">Academic Record</h3>
+                                        <p class="morph-panel__desc">Your CGPA, SSC & HSC marks</p>
+                                    </div>
+                                    <span class="morph-panel__status" id="status0">
+                                        <span class="status-dot"></span> Pending
+                                    </span>
+                                </div>
+                                <div class="morph-panel__body">
+                                    <div class="input-grid input-grid--3">
+                                        <div class="input-group">
+                                            <label class="input-label" for="CGPA">CGPA</label>
+                                            <div class="input-wrap">
+                                                <input type="number" step="0.1" min="1" max="10" id="CGPA" placeholder="e.g. 8.5" required>
+                                                <span class="input-suffix">/ 10</span>
+                                            </div>
+                                            <div id="cgpa-warning" style="display:none; color:#ff6b6b; font-size:0.85rem; margin-top:6px; font-weight:500;">CGPA must be between 1 and 10.</div>
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="input-label" for="SSC_Marks">SSC Marks</label>
+                                            <div class="input-wrap">
+                                                <input type="number" min="25" max="100" id="SSC_Marks" placeholder="e.g. 85" required>
+                                                <span class="input-suffix">%</span>
+                                            </div>
+                                            <div id="ssc-warning" style="display:none; color:#ff6b6b; font-size:0.85rem; margin-top:6px; font-weight:500;">Percentage must be between 25 and 100.</div>
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="input-label" for="HSC_Marks">HSC Marks</label>
+                                            <div class="input-wrap">
+                                                <input type="number" min="25" max="100" id="HSC_Marks" placeholder="e.g. 78" required>
+                                                <span class="input-suffix">%</span>
+                                            </div>
+                                            <div id="hsc-warning" style="display:none; color:#ff6b6b; font-size:0.85rem; margin-top:6px; font-weight:500;">Percentage must be between 25 and 100.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="morph-panel__actions">
+                                    <button type="button" class="panel-btn panel-btn--next" data-next="1" id="academic-continue-btn">
+                                        Continue
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 1: Experience -->
+                        <div class="morph-panel" data-panel="1">
+                            <div class="morph-panel__inner">
+                                <div class="morph-panel__head">
+                                    <span class="morph-panel__step-num">02</span>
+                                    <div>
+                                        <h3 class="morph-panel__title">Experience</h3>
+                                        <p class="morph-panel__desc">Internships, projects & certifications</p>
+                                    </div>
+                                    <span class="morph-panel__status" id="status1">
+                                        <span class="status-dot"></span> Pending
+                                    </span>
+                                </div>
+                                <div class="morph-panel__body">
+                                    <div class="input-grid input-grid--3">
+                                        <div class="input-group">
+                                            <label class="input-label" for="Internships">Internships</label>
+                                            <div class="input-wrap">
+                                                <input type="number" min="1" max="10" id="Internships" placeholder="e.g. 2" required>
+                                                <span class="input-suffix">count</span>
+                                            </div>
+                                            <div id="internships-warning" style="display:none; color:#ff6b6b; font-size:0.85rem; margin-top:6px; font-weight:500;">Internships must be between 1 and 10.</div>
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="input-label" for="Projects">Projects</label>
+                                            <div class="input-wrap">
+                                                <input type="number" min="1" max="30" id="Projects" placeholder="e.g. 5" required>
+                                                <span class="input-suffix">count</span>
+                                            </div>
+                                            <div id="projects-warning" style="display:none; color:#ff6b6b; font-size:0.85rem; margin-top:6px; font-weight:500;">Projects must be between 1 and 30.</div>
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="input-label" for="WorkshopsCertifications">Workshops / Certs</label>
+                                            <div class="input-wrap">
+                                                <input type="number" min="1" max="50" id="WorkshopsCertifications" placeholder="e.g. 3" required>
+                                                <span class="input-suffix">count</span>
+                                            </div>
+                                            <div id="workshops-warning" style="display:none; color:#ff6b6b; font-size:0.85rem; margin-top:6px; font-weight:500;">Workshops must be between 1 and 50.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="morph-panel__actions">
+                                    <button type="button" class="panel-btn panel-btn--back" data-prev="0">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                                        Back
+                                    </button>
+                                    <button type="button" class="panel-btn panel-btn--next" data-next="2">
+                                        Continue
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 2: Aptitude -->
+                        <div class="morph-panel" data-panel="2">
+                            <div class="morph-panel__inner">
+                                <div class="morph-panel__head">
+                                    <span class="morph-panel__step-num">03</span>
+                                    <div>
+                                        <h3 class="morph-panel__title">Aptitude & Skills</h3>
+                                        <p class="morph-panel__desc">Test scores & soft skills rating</p>
+                                    </div>
+                                    <span class="morph-panel__status" id="status2">
+                                        <span class="status-dot"></span> Pending
+                                    </span>
+                                </div>
+                                <div class="morph-panel__body">
+                                    <div class="input-grid input-grid--2">
+                                        <div class="input-group">
+                                            <label class="input-label" for="AptitudeTestScore">Aptitude Test Score</label>
+                                            <div class="input-wrap">
+                                                <input type="number" min="0" max="100" id="AptitudeTestScore" placeholder="e.g. 72" required>
+                                                <span class="input-suffix">/ 100</span>
+                                            </div>
+                                            <div id="aptitude-warning" style="display:none; color:#ff6b6b; font-size:0.85rem; margin-top:6px; font-weight:500;">Score must be between 0 and 100.</div>
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="input-label" for="SoftSkillsRating">Soft Skills Rating</label>
+                                            <div class="input-wrap">
+                                                <input type="number" step="0.1" min="1" max="5" id="SoftSkillsRating" placeholder="e.g. 4.2" required>
+                                                <span class="input-suffix">/ 5</span>
+                                            </div>
+                                            <div id="softskills-warning" style="display:none; color:#ff6b6b; font-size:0.85rem; margin-top:6px; font-weight:500;">Rating must be between 1 and 5.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="morph-panel__actions">
+                                    <button type="button" class="panel-btn panel-btn--back" data-prev="1">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                                        Back
+                                    </button>
+                                    <button type="button" class="panel-btn panel-btn--next" data-next="3">
+                                        Continue
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 3: Activities -->
+                        <div class="morph-panel" data-panel="3">
+                            <div class="morph-panel__inner">
+                                <div class="morph-panel__head">
+                                    <span class="morph-panel__step-num">04</span>
+                                    <div>
+                                        <h3 class="morph-panel__title">Program Participation</h3>
+                                        <p class="morph-panel__desc">Activities & placement training</p>
+                                    </div>
+                                    <span class="morph-panel__status" id="status3">
+                                        <span class="status-dot"></span> Pending
+                                    </span>
+                                </div>
+                                <div class="morph-panel__body">
+                                    <div class="input-grid input-grid--2">
+                                        <div class="input-group">
+                                            <label class="input-label">Extracurricular Activities</label>
+                                            <div class="custom-select" data-field="ExtracurricularActivities">
+                                                <button type="button" class="custom-select__trigger" aria-haspopup="listbox">
+                                                    <span class="custom-select__value" data-placeholder="Select an option">Select an option</span>
+                                                    <svg class="custom-select__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                                </button>
+                                                <ul class="custom-select__dropdown" role="listbox">
+                                                    <li class="custom-select__option" data-value="Yes" role="option">
+                                                        <span class="custom-select__option-icon">&#9989;</span>
+                                                        <div>
+                                                            <span class="custom-select__option-label">Yes</span>
+                                                            <span class="custom-select__option-sub">Active in extracurriculars</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="custom-select__option" data-value="No" role="option">
+                                                        <span class="custom-select__option-icon">&#10060;</span>
+                                                        <div>
+                                                            <span class="custom-select__option-label">No</span>
+                                                            <span class="custom-select__option-sub">No extracurricular participation</span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <select id="ExtracurricularActivities" style="display:none;" required>
+                                                    <option value="">Select</option>
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="input-label">Placement Training</label>
+                                            <div class="custom-select" data-field="PlacementTraining">
+                                                <button type="button" class="custom-select__trigger" aria-haspopup="listbox">
+                                                    <span class="custom-select__value" data-placeholder="Select an option">Select an option</span>
+                                                    <svg class="custom-select__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                                </button>
+                                                <ul class="custom-select__dropdown" role="listbox">
+                                                    <li class="custom-select__option" data-value="Yes" role="option">
+                                                        <span class="custom-select__option-icon">&#9989;</span>
+                                                        <div>
+                                                            <span class="custom-select__option-label">Yes</span>
+                                                            <span class="custom-select__option-sub">Completed training program</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="custom-select__option" data-value="No" role="option">
+                                                        <span class="custom-select__option-icon">&#10060;</span>
+                                                        <div>
+                                                            <span class="custom-select__option-label">No</span>
+                                                            <span class="custom-select__option-sub">No formal training</span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <select id="PlacementTraining" style="display:none;" required>
+                                                    <option value="">Select</option>
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="morph-panel__actions">
+                                    <button type="button" class="panel-btn panel-btn--back" data-prev="2">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                                        Back
+                                    </button>
+                                    <button type="submit" class="panel-btn panel-btn--submit" id="submitBtn">
+                                        <span class="btn-submit__text">Assess Candidate</span>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+                <!-- Result Section -->
+                <div id="resultWrap" class="result-wrap scroll-reveal" data-reveal>
+                    <div class="loading-overlay" id="loadingOverlay" aria-live="polite">
+                        <div class="analysis-card">
+                            <div class="analysis-visual" id="analysisVisual" aria-hidden="true">
+                                <span class="analysis-orbit analysis-orbit--outer"></span>
+                                <span class="analysis-orbit analysis-orbit--inner"></span>
+                                <span class="analysis-pulse analysis-pulse--one"></span>
+                                <span class="analysis-pulse analysis-pulse--two"></span>
+                                <div class="analysis-core">
+                                    <strong id="analysisProgress">0%</strong>
+                                    <span>scanning</span>
+                                </div>
+                                <span class="analysis-node analysis-node--one"></span>
+                                <span class="analysis-node analysis-node--two"></span>
+                                <span class="analysis-node analysis-node--three"></span>
+                            </div>
+                            <div class="analysis-copy">
+                                <span class="analysis-kicker"><i></i> Placement readiness model</span>
+                                <h3>Building your candidate map</h3>
+                                <p id="analysisStage">Reading academic signals and achievements.</p>
+                                <div class="analysis-steps" aria-label="Analysis stages">
+                                    <span class="is-active" data-analysis-step>Academic</span>
+                                    <span data-analysis-step>Experience</span>
+                                    <span data-analysis-step>Readiness</span>
+                                    <span data-analysis-step>Outlook</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result-card" id="resultCard">
+                        <div class="result-card__aura" aria-hidden="true"></div>
+                        <div class="result-card__topline">
+                            <span class="result-eyebrow">Placement outlook</span>
+                            <span class="result-complete"><i></i> Analysis complete</span>
+                        </div>
+                        <div class="result-summary">
+                            <div class="confidence-gauge" id="confidenceGauge">
+                                <svg viewBox="0 0 120 120" class="gauge-svg">
+                                    <circle class="gauge-bg" cx="60" cy="60" r="52"/>
+                                    <circle class="gauge-fill" id="gaugeFill" cx="60" cy="60" r="52"/>
+                                </svg>
+                                <div class="gauge-label" id="gaugeLabel"></div>
+                                <span class="gauge-caption">profile index</span>
+                            </div>
+                            <div class="result-heading">
+                                <div class="result-status" id="resultStatus"></div>
+                                <p class="result-subtitle" id="resultSubtitle"></p>
+                            </div>
+                        </div>
+                        <div class="profile-signals">
+                            <div class="profile-signals__head">
+                                <span>Profile signals</span>
+                                <span>Strength</span>
+                            </div>
+                            <div class="profile-signal">
+                                <div><span>Academic record</span><strong id="academicSignalValue">--</strong></div>
+                                <span class="profile-signal__track"><i id="academicSignalBar"></i></span>
+                            </div>
+                            <div class="profile-signal">
+                                <div><span>Experience portfolio</span><strong id="experienceSignalValue">--</strong></div>
+                                <span class="profile-signal__track"><i id="experienceSignalBar"></i></span>
+                            </div>
+                            <div class="profile-signal">
+                                <div><span>Readiness &amp; soft skills</span><strong id="readinessSignalValue">--</strong></div>
+                                <span class="profile-signal__track"><i id="readinessSignalBar"></i></span>
+                            </div>
+                        </div>
+                        <div class="result-tags" id="resultTags" aria-label="Candidate profile highlights"></div>
+                        <p class="result-note">Built from the ten details in your profile.</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="card-footer scroll-reveal" data-reveal>
+                <p>Powered by machine learning Ã‚Â· Built with care</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
