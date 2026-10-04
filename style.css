@@ -2515,9 +2515,10 @@ input[type='number']::-webkit-outer-spin-button {
 }
 /* Mobile Performance Optimizations */
 @media (max-width: 768px) {
-  /* Hide heavy 52MB video on mobile to save RAM/GPU and battery */
+  /* Keep the compressed hero video visible on mobile too. */
   .hero-video {
-    display: none !important;
+    display: block;
+    object-position: center;
   }
   
   /* Provide a fallback dark background for the hero section */
